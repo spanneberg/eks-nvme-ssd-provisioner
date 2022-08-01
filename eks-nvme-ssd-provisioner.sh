@@ -38,6 +38,7 @@ then
   if mount | grep "$DEVICE" > /dev/null; then
     echo "device $DEVICE appears to be mounted already"
   else
+    mkdir -p /pv-disks/$UUID
     mount -o defaults,noatime,discard,nobarrier --uuid "$UUID" "/pv-disks/$UUID"
   fi
   ln -s "/pv-disks/$UUID" /nvme/disk || true
